@@ -1,2 +1,7 @@
 # Digital-electronics-2
-AVR-repositorz 10h
+
+## VUT
+AVR-**repository** 10h
+'''
+code
+'''
