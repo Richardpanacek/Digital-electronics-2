@@ -15,12 +15,14 @@
 /* Includes ----------------------------------------------------------*/
 #include <avr/io.h>
 #include <util/delay.h>
+#include "gpio.h"
 
 /* Typedef -----------------------------------------------------------*/
 /* Define ------------------------------------------------------------*/
-#define LED_PIN     PB5
-#define LED_PIN2     PB1
-#define BLINK_DELAY 250
+#define LED_PIN_0     PB5
+#define LED_PIN_1     PB0
+#define BUTTON        PD2
+#define BLINK_DELAY 100
 
 /* Variables ---------------------------------------------------------*/
 /* Function prototypes -----------------------------------------------*/
@@ -34,21 +36,20 @@
 int main(void)
 {
     /* Set output pin */
-    DDRB |= _BV(LED_PIN);           /* DDRB = DDRB or (0010 0000) */ //smerový registr
-    DDRB |= _BV(LED_PIN2);
+    GPIO_config_output(&DDRB, LED_PIN_0);
+    GPIO_config_output(&DDRB, LED_PIN_1);
 
-    /* Turn LED off */
-    PORTB &= ~_BV(LED_PIN);         /* PORTB = PORTB and (0010 0000) */ //vystupni registr
-    PORTB |= _BV(LED_PIN2);
+    /* Turn LED off & on */
+    GPIO_write(&PORTB, LED_PIN_0, 1);
+    GPIO_write(&PORTB, LED_PIN_1, 0);
+    
     /* Infinite loop */
     for (;;)
     {
-        /* Invert LED and delay */
-        PORTB ^= _BV(LED_PIN);      /* PORTB = PORTB xor (0010 0000) */
-        PORTB ^= _BV(LED_PIN2);
-        _delay_ms(BLINK_DELAY);     /* Wait for several milisecs */
-       
+        /* Invert LED and delay */ 
+        GPIO_toggle(&PORTB, LED_PIN_0);
+        GPIO_toggle(&PORTB, LED_PIN_1);
+        _delay_ms(BLINK_DELAY);   
     }
-
     return (0);
 }
