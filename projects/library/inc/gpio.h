@@ -1,6 +1,8 @@
 /*library DE2 Holub Lorenc*/
 #ifndef  GPIO_H_INCLUDED
 #define  GPIO_H_INCLUDED
+#define  PIN_LOW 0
+#define  PIN_LOW 1
 
 #include <avr/io.h>
 
