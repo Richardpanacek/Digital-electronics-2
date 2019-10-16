@@ -73,4 +73,3 @@ ISR(TIMER1_OVF_vect)
 {
     // TODO: Toggle red LED
 }
-*/
