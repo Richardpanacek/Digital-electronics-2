@@ -35,7 +35,11 @@ int main(void)
     GPIO_config_output(&DDRB, LED_GREEN);
     GPIO_write(&PORTB, LED_GREEN, PIN_LOW);
     /* LED_RED */
+<<<<<<< HEAD
     GPIO_config_output(&DDRB, LED_RED);
+=======
+        GPIO_config_output(&DDRB, LED_RED);
+>>>>>>> 8d9c57f49addcdfcb1921a90e3ca213931e1963d
     GPIO_write(&PORTB, LED_RED, PIN_LOW);
     // TODO: Configure red LED
 
@@ -63,7 +67,11 @@ int main(void)
  */
 ISR(TIMER0_OVF_vect)
 {
+<<<<<<< HEAD
     GPIO_toggle(&DDRB, LED_GREEN);
+=======
+    // TODO: Toggle green LED
+>>>>>>> 8d9c57f49addcdfcb1921a90e3ca213931e1963d
 }
 
 /**
@@ -71,5 +79,10 @@ ISR(TIMER0_OVF_vect)
  */
 ISR(TIMER1_OVF_vect)
 {
+<<<<<<< HEAD
     GPIO_toggle(&DDRB, LED_RED);
 }
+=======
+    // TODO: Toggle red LED
+}
+>>>>>>> 8d9c57f49addcdfcb1921a90e3ca213931e1963d

@@ -1,10 +1,12 @@
-/*library DE2 Holub Lorenc*/
 #ifndef  GPIO_H_INCLUDED
 #define  GPIO_H_INCLUDED
+
+#include <avr/io.h>
 #define  PIN_LOW 0
 #define  PIN_HIGH 1
 
-#include <avr/io.h>
+
+
 
 
 void GPIO_config_output(volatile uint8_t *reg_name, uint8_t pin_num);
