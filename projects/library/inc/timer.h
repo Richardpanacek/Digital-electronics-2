@@ -28,3 +28,4 @@ void TIM_config_interrupt(uint8_t timer_name,
                           uint8_t interr_mode);
 
 #endif /* TIMER_H_INCLUDED */
+

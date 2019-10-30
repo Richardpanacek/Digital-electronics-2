@@ -47,7 +47,7 @@ void TIM_config_prescaler(uint8_t timer_name,
                 TCCR0B = TCCR0B & ~_BV(CS00);
         }
     }
-    /* Timer/Counter1 */            //& dava 0, | dava 1 na bit cs12 str.110 datasheetu atmega328p 
+    /* Timer/Counter1 */
     else if (timer_name == TIM1) {
         switch (presc_val) {
             case TIM_PRESC_1:
@@ -85,7 +85,7 @@ void TIM_config_prescaler(uint8_t timer_name,
                 TCCR1B = TCCR1B & ~_BV(CS12);
                 TCCR1B = TCCR1B & ~_BV(CS11);
                 TCCR1B = TCCR1B & ~_BV(CS10);
-        }// TODO: Set prescaler values for Timer/Counter1
+        }
     }
     /* Timer/Counter2 */
     else {
@@ -102,22 +102,34 @@ void TIM_config_prescaler(uint8_t timer_name,
                 TCCR2B = TCCR2B |  _BV(CS21);
                 TCCR2B = TCCR2B & ~_BV(CS20);
                 break;
-            case TIM_PRESC_64:
+            case TIM_PRESC_32:
                 /* 011 */
                 TCCR2B = TCCR2B & ~_BV(CS22);
                 TCCR2B = TCCR2B |  _BV(CS21);
                 TCCR2B = TCCR2B |  _BV(CS20);
                 break;
-            case TIM_PRESC_256:
+            case TIM_PRESC_64:
                 /* 100 */
                 TCCR2B = TCCR2B |  _BV(CS22);
                 TCCR2B = TCCR2B & ~_BV(CS21);
                 TCCR2B = TCCR2B & ~_BV(CS20);
                 break;
-            case TIM_PRESC_1024:
+            case TIM_PRESC_128:
                 /* 101 */
                 TCCR2B = TCCR2B |  _BV(CS22);
                 TCCR2B = TCCR2B & ~_BV(CS21);
+                TCCR2B = TCCR2B |  _BV(CS20);
+                break;
+            case TIM_PRESC_256:
+                /* 110 */
+                TCCR2B = TCCR2B |  _BV(CS22);
+                TCCR2B = TCCR2B |  _BV(CS21);
+                TCCR2B = TCCR2B & ~_BV(CS20);
+                break;
+            case TIM_PRESC_1024:
+                /* 111 */
+                TCCR2B = TCCR2B |  _BV(CS22);
+                TCCR2B = TCCR2B |  _BV(CS21);
                 TCCR2B = TCCR2B |  _BV(CS20);
                 break;
             default:
@@ -125,7 +137,7 @@ void TIM_config_prescaler(uint8_t timer_name,
                 TCCR2B = TCCR2B & ~_BV(CS22);
                 TCCR2B = TCCR2B & ~_BV(CS21);
                 TCCR2B = TCCR2B & ~_BV(CS20);
-        }// TODO: Set prescaler values for Timer/Counter2
+        }
     }
 }
 
@@ -149,10 +161,30 @@ void TIM_config_interrupt(uint8_t timer_name,
     }
     /* Timer/Counter1 */
     else if (timer_name == TIM1) {
-        // TODO: Enable/disable interupt for Timer/Counter1
+        switch (interr_mode) {
+            case TIM_OVERFLOW_ENABLE:
+                TIMSK1 = TIMSK1 | _BV(TOIE1);
+                break;
+            case TIM_OVERFLOW_DISABLE:
+                TIMSK1 = TIMSK1 & ~_BV(TOIE1);
+                break;
+            default:
+                /* Disable overflow interrupt */
+                TIMSK1 = TIMSK1 & ~_BV(TOIE1);
+        }
     }
     /* Timer/Counter2 */
     else {
-        // TODO: Enable/disable interupt for Timer/Counter2
+        switch (interr_mode) {
+            case TIM_OVERFLOW_ENABLE:
+                TIMSK2 = TIMSK2 | _BV(TOIE2);
+                break;
+            case TIM_OVERFLOW_DISABLE:
+                TIMSK2 = TIMSK2 & ~_BV(TOIE2);
+                break;
+            default:
+                /* Disable overflow interrupt */
+                TIMSK2 = TIMSK2 & ~_BV(TOIE2);
+        }
     }
 }
