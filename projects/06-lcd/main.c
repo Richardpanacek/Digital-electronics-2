@@ -79,8 +79,7 @@ int main(void)
     for (uint8_t i = 0; i < 16; i++)
         {
         lcd_data(lcd_user_symbols[i]);
-        }
-       
+        }       
         lcd_clrscr ();
         lcd_putc (0x00);
 
