@@ -89,7 +89,7 @@ ISR(ADC_vect)
     lcd_gotoxy(1, 0); //pise v zavislosti na podmince pokud je DIG hodnota...
     if (value < 50)
         {
-        lcd_puts("RICHT");
+        lcd_puts("RIGHT");
         }
     else if (value > 50 && value < 150)
         {
