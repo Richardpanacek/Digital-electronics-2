@@ -79,3 +79,15 @@ rand8_asm:
     pop temp                ; Restore values from Stack end return
     pop result
     ret
+.global burst_asm
+burst_asm:
+    push result             ;r16 posila do zasobniku Stack
+    push temp               ;r17 posila do zasobniku Stack
+
+    sbi PORTB, 5            ;zapise 1 do portu b5
+    cbi PORTB, 5            ;zapise 0 do portu b5
+
+    pop temp
+    pop result
+
+    ret
