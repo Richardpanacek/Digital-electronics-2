@@ -88,7 +88,7 @@ void TIM_config_prescaler(uint8_t timer_name,
         }
     }
     /* Timer/Counter2 */
-    else {
+     else if (timer_name == TIM2) {
         switch (presc_val) {
             case TIM_PRESC_1:
                 /* 001 */
@@ -131,7 +131,7 @@ void TIM_config_prescaler(uint8_t timer_name,
                 TCCR2B = TCCR2B |  _BV(CS22);
                 TCCR2B = TCCR2B |  _BV(CS21);
                 TCCR2B = TCCR2B |  _BV(CS20);
-                break;
+                break; 
             default:
                 /* 000: No clock source (Timer/Counter stopped) */
                 TCCR2B = TCCR2B & ~_BV(CS22);
@@ -139,6 +139,7 @@ void TIM_config_prescaler(uint8_t timer_name,
                 TCCR2B = TCCR2B & ~_BV(CS20);
         }
     }
+        // TODO: Set prescaler values for Timer/Counter2
 }
 
 /*--------------------------------------------------------------------*/
@@ -172,6 +173,7 @@ void TIM_config_interrupt(uint8_t timer_name,
                 /* Disable overflow interrupt */
                 TIMSK1 = TIMSK1 & ~_BV(TOIE1);
         }
+        // TODO: Enable/disable interupt for Timer/Counter1
     }
     /* Timer/Counter2 */
     else {
@@ -185,6 +187,7 @@ void TIM_config_interrupt(uint8_t timer_name,
             default:
                 /* Disable overflow interrupt */
                 TIMSK2 = TIMSK2 & ~_BV(TOIE2);
+        // TODO: Enable/disable interupt for Timer/Counter2
         }
     }
-}
+ }   
